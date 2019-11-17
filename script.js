@@ -1,6 +1,13 @@
 "use strict";
-let money = +prompt("Ваш бюджет на месяц?", "");
-let time = prompt("Введите дату в формате YYYY-MM-DD", "1070 - 01 - 01");
+let money, time;
+
+function start() {
+    while(isNaN(money) || money == "" || money == null) {
+        money = +prompt("Ваш бюджет на месяц?", "");
+        time = prompt("Введите дату в формате YYYY-MM-DD", "1070 - 01 - 01");
+    }
+}
+start();
 
 //var time = new Date(time1);
 //var curr_date = time.getDate();
@@ -12,29 +19,35 @@ let appData = {
     expenses: {},
     optionalExpenses: {},
     ncome: [],
-    savings: false
+    savings: true
 };
 
-for (let i = 0; i < 2; i++) {
-    let a = prompt("Введите обязательную статью расходов в этом месяце", "");
-    let b = +prompt("Во сколько обойдется?", "");
-    if (
-        typeof a === "string" &&
-        typeof a != null &&
-        // eslint-disable-next-line valid-typeof
-        typeof b != null &&
-        a != "" &&
-        b != "" &&
-        a.length < 50
-    ) {
-        console.log("done");
-        appData.expenses[a] = b;
-    } else {
-        i--;
+
+function chooseExpenses(){
+    for (let i = 0; i < 2; i++) {
+        let a = prompt("Введите обязательную статью расходов в этом месяце", "");
+        let b = +prompt("Во сколько обойдется?", "");
+        if (
+            typeof a === "string" &&
+            typeof a != null &&
+            // eslint-disable-next-line valid-typeof
+            typeof b != null &&
+            a != "" &&
+            b != "" &&
+            a.length < 50
+        ) {
+            console.log("done");
+            appData.expenses[a] = b;
+        } else {
+            i--;
+        }
     }
 }
 
-appData.MoneyPerDay = appData.budget / 30;
+chooseExpenses();
+
+
+appData.MoneyPerDay = (appData.budget / 30).toFixed(1);
 
 alert("Ежедневный бюджет: " + appData.MoneyPerDay);
 
@@ -47,3 +60,15 @@ if (appData.MoneyPerDay < 100) {
 } else {
     console.log("Произошла ошибка");
 }
+
+function checkSavings(){
+    if(appData.savings == true){
+        let save = +prompt("Какова сумма ваших накоплений?", "");
+        let percent = +prompt("Какова сумма ваших накоплений?", "");
+
+        appData.monthIncome = save/100/12*percent;
+        alert("Доход с вашего дерозита : "+appData.monthIncome);
+    }
+
+}    
+checkSavings();
