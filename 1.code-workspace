@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.CustomBrowser": "chrome",
+		"liveServer.settings.port": 5500,
+		"liveServer.settings.useBrowserPreview": false,
+		"liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+		"liveServer.settings.NoBrowser": false
+	}
+}
